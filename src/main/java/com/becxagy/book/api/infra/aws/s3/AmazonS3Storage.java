@@ -5,7 +5,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.becxagy.book.api.adapters.out.storage.StoragePort;
-import com.becxagy.book.api.infra.utils.FileUtil;
+import com.becxagy.book.api.infra.utils.file.FileUtil;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
