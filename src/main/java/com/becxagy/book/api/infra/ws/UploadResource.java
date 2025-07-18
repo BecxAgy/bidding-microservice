@@ -1,27 +1,30 @@
 package com.becxagy.book.api.infra.ws;
 
-import com.becxagy.book.api.application.service.UploadBookService;
-import com.becxagy.book.api.core.command.UploadCommand;
-import com.becxagy.book.api.core.usecase.UploadBookUsecase;
+
+import com.becxagy.book.api.core.command.UploadBiddingCommand;
+import com.becxagy.book.api.core.usecase.UploadBiddingUsecase;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-@RestController
-@RequestMapping("/v1/upload")
+
+@RestController()
+@RequestMapping("/v1/bidding")
 public class UploadResource {
 
-    private final UploadBookService uploadBookService;
+    private final UploadBiddingUsecase uploadBiddingUsecase;
 
     @Autowired
-    public UploadResource(UploadBookService uploadBookService){
-        this.uploadBookService = uploadBookService;
+    public UploadResource(UploadBiddingUsecase uploadBiddingUsecase){
+        this.uploadBiddingUsecase = uploadBiddingUsecase;
     }
-    @PostMapping
-    public ResponseEntity<String> uploadBook(@ModelAttribute("file") UploadCommand uploadCommand){
-        uploadBookService.upload(uploadCommand.file());
-        return ResponseEntity.ok(uploadCommand.file().getOriginalFilename());
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadBidding(@ModelAttribute("file") UploadBiddingCommand uploadCommand){
+        String fileUrl = uploadBiddingUsecase.upload(uploadCommand.file());
+
+        
+        return ResponseEntity.ok(fileUrl);
     }
 
 }

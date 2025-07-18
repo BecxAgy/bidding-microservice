@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.concurrent.CompletableFuture;
 
 @Component
 public class AmazonS3Storage implements StoragePort {
@@ -30,17 +31,17 @@ public class AmazonS3Storage implements StoragePort {
 
     @Override
     @Async
-    public String upload(final MultipartFile multipartFile) {
-        try {
-
-            final File file = FileUtil.convertMultipartFileToFile(multipartFile);
-            String fileUrl = uploadFileToS3Bucket(bucketName, file);
-            file.delete();
-            return fileUrl;
-        } catch (final AmazonServiceException ex) {
-
-            throw new RuntimeException("Error while uploading file to S3: " + ex.getMessage());
-        }
+    public CompletableFuture<String> upload(final MultipartFile multipartFile) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                final File file = FileUtil.convertMultipartFileToFile(multipartFile);
+                String fileUrl = uploadFileToS3Bucket(bucketName, file);
+                file.delete();
+                return fileUrl;
+            } catch (final AmazonServiceException ex) {
+                throw new RuntimeException("Error while uploading file to S3: " + ex.getMessage());
+            }
+        });
     }
 
 
@@ -48,9 +49,8 @@ public class AmazonS3Storage implements StoragePort {
     private String uploadFileToS3Bucket(final String bucketName, final File file) {
         try {
             final String uniqueFileName = LocalDateTime.now() + "_" + file.getName();
-            final PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, uniqueFileName, file)
-                    .withCannedAcl(CannedAccessControlList.PublicRead); // Tornando o arquivo publicamente acessível
-
+            final PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, uniqueFileName, file);
+                    
             s3Client.putObject(putObjectRequest);
 
             // Retorna a URL do arquivo armazenado
