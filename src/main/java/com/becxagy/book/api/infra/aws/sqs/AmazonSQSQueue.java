@@ -4,6 +4,7 @@ import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.becxagy.book.api.adapters.out.queue.QueuePort;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +23,7 @@ public class AmazonSQSQueue implements QueuePort {
     }
 
     @Override
+    @Async
     public void publish(MultipartFile file) {
         String messageBody = String.format("""
             {
