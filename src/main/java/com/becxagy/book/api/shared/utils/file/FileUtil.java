@@ -9,6 +9,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtil {
 
+    // Private constructor to prevent instantiation
+    private FileUtil() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static File convertMultipartFileToFile(final MultipartFile multipartFile) {
         try {
             String originalFilename = multipartFile.getOriginalFilename();
