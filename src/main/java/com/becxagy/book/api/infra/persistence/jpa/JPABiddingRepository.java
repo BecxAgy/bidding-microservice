@@ -54,8 +54,9 @@ public class JPABiddingRepository implements BiddingRepository {
         bidding.setName(name);
         bidding.setDescription(description);
         bidding.setFileUrl(fileUrl);
-        springDataBiddingRepository.save(bidding);
         
+        springDataBiddingRepository.save(bidding);
+
         return bidding.getId();
     }
 
