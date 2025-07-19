@@ -6,9 +6,7 @@ import com.becxagy.book.api.adapters.out.queue.QueuePort;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.UUID;
 
 @Component
 public class AmazonSQSQueue implements QueuePort {
@@ -24,13 +22,13 @@ public class AmazonSQSQueue implements QueuePort {
 
     @Override
     @Async
-    public void publish(MultipartFile file) {
+    public void publish(Long biddingId, String fileUrl) {
         String messageBody = String.format("""
             {
               "id": "%s",
               "filename": "%s"
             }
-            """, UUID.randomUUID(), file.getOriginalFilename());
+            """, biddingId, fileUrl);
 
         SendMessageRequest request = new SendMessageRequest()
                 .withQueueUrl(queueUrl)

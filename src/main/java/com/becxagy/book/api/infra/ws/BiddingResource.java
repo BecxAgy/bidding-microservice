@@ -5,8 +5,6 @@ import com.becxagy.book.api.core.bidding.Bidding;
 import com.becxagy.book.api.core.command.CreateBiddingCommand;
 import com.becxagy.book.api.core.usecase.CreateBiddingUsecase;
 import com.becxagy.book.api.core.usecase.ReadBiddingUsecase;
-import com.becxagy.book.api.core.usecase.UploadBiddingUsecase;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
