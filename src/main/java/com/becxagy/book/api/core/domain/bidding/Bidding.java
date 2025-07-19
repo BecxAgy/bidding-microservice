@@ -1,8 +1,8 @@
-package com.becxagy.book.api.core.bidding;
+package com.becxagy.book.api.core.domain.bidding;
 
 import java.util.List;
 
-import com.becxagy.book.api.core.checklist.DocumentRequirement;
+import com.becxagy.book.api.core.domain.checklist.DocumentRequirement;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

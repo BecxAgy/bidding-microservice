@@ -1,10 +1,10 @@
-package com.becxagy.book.api.infra.utils.enumeration;
+package com.becxagy.book.api.shared.utils.enumeration;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.becxagy.book.api.infra.exception.InvalidEnumClassException;
+import com.becxagy.book.api.shared.exception.InvalidEnumClassException;
 
 public final class EnumUtil {
 

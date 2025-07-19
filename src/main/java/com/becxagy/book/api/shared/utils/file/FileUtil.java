@@ -1,4 +1,4 @@
-package com.becxagy.book.api.infra.utils.file;
+package com.becxagy.book.api.shared.utils.file;
 
 import java.io.File;
 import java.io.FileOutputStream;

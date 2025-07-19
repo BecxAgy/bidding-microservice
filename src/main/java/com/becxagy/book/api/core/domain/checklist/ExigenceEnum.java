@@ -1,6 +1,6 @@
-package com.becxagy.book.api.core.checklist;
+package com.becxagy.book.api.core.domain.checklist;
 
-import com.becxagy.book.api.infra.utils.enumeration.ValueLabelEnum;
+import com.becxagy.book.api.shared.utils.enumeration.ValueLabelEnum;
 
 public enum ExigenceEnum implements ValueLabelEnum<ExigenceEnum> {
     OPCIONAL("Opcional"),

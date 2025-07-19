@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.becxagy.book.api.core.bidding.Bidding;
+import com.becxagy.book.api.core.domain.bidding.Bidding;
 import com.becxagy.book.api.core.repository.BiddingRepository;
 import com.becxagy.book.api.core.usecase.ReadBiddingUsecase;
 @Service

@@ -2,7 +2,7 @@ package com.becxagy.book.api.core.usecase;
 
 import java.util.List;
 
-import com.becxagy.book.api.core.bidding.Bidding;
+import com.becxagy.book.api.core.domain.bidding.Bidding;
 
 public interface ReadBiddingUsecase {
 

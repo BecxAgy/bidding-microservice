@@ -1,6 +1,6 @@
-package com.becxagy.book.api.infra.persistence.jpa.converter;
+package com.becxagy.book.api.infra.out.persistence.jpa.converter;
 
-import com.becxagy.book.api.core.checklist.ExigenceEnum;
+import com.becxagy.book.api.core.domain.checklist.ExigenceEnum;
 
 import jakarta.persistence.AttributeConverter;
 

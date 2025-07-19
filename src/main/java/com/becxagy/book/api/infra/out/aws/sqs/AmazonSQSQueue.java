@@ -1,4 +1,4 @@
-package com.becxagy.book.api.infra.aws.sqs;
+package com.becxagy.book.api.infra.out.aws.sqs;
 
 import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.amazonaws.services.sqs.model.SendMessageRequest;

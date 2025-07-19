@@ -1,4 +1,4 @@
-package com.becxagy.book.api.infra.exception;
+package com.becxagy.book.api.shared.exception;
 
 public class InvalidEnumClassException extends RuntimeException {
 

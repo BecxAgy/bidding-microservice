@@ -1,15 +1,18 @@
-package com.becxagy.book.api.infra.ws;
+package com.becxagy.book.api.infra.in;
 
 
-import com.becxagy.book.api.core.bidding.Bidding;
-import com.becxagy.book.api.core.command.CreateBiddingCommand;
-import com.becxagy.book.api.core.usecase.CreateBiddingUsecase;
-import com.becxagy.book.api.core.usecase.ReadBiddingUsecase;
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.becxagy.book.api.core.command.CreateBiddingCommand;
+import com.becxagy.book.api.core.domain.bidding.Bidding;
+import com.becxagy.book.api.core.usecase.CreateBiddingUsecase;
+import com.becxagy.book.api.core.usecase.ReadBiddingUsecase;
 
 
 @RestController()
@@ -25,7 +28,7 @@ public class BiddingResource {
         this.readBiddingUsecase = readBiddingUsecase;
     }
     @PostMapping("/create")
-    public ResponseEntity<String> uploadBidding(@ModelAttribute("file") CreateBiddingCommand command){
+    public ResponseEntity<String> uploadBidding(@Valid @ModelAttribute("file") CreateBiddingCommand command){
         uploadBiddingUsecase.create(command);
         return ResponseEntity.ok("Bidding created successfully");
     }

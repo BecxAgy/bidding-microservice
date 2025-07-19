@@ -1,7 +1,7 @@
-package com.becxagy.book.api.core.checklist;
+package com.becxagy.book.api.core.domain.checklist;
 
-import com.becxagy.book.api.core.bidding.Bidding;
-import com.becxagy.book.api.infra.persistence.jpa.converter.ExigenceEnumConverter;
+import com.becxagy.book.api.core.domain.bidding.Bidding;
+import com.becxagy.book.api.infra.out.persistence.jpa.converter.ExigenceEnumConverter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;

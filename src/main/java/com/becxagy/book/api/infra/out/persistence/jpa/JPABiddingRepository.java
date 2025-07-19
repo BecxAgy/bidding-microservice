@@ -1,14 +1,14 @@
-package com.becxagy.book.api.infra.persistence.jpa;
+package com.becxagy.book.api.infra.out.persistence.jpa;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.becxagy.book.api.core.bidding.Bidding;
-import com.becxagy.book.api.core.checklist.DocumentRequirement;
+import com.becxagy.book.api.core.domain.bidding.Bidding;
+import com.becxagy.book.api.core.domain.checklist.DocumentRequirement;
 import com.becxagy.book.api.core.repository.BiddingRepository;
-import com.becxagy.book.api.infra.persistence.jpa.springdata.SpringDataJPABiddingRepository;
+import com.becxagy.book.api.infra.out.persistence.jpa.springdata.SpringDataJPABiddingRepository;
 
 @Repository
 public class JPABiddingRepository implements BiddingRepository {
