@@ -3,10 +3,13 @@ package com.becxagy.book.api.infra.in.exceptionhandler;
 import java.util.concurrent.CompletionException;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
@@ -14,10 +17,13 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 import com.becxagy.book.api.shared.exception.InvalidEnumClassException;
 import com.becxagy.book.api.shared.exception.S3StorageException;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 
-@ControllerAdvice
+@RestControllerAdvice
+@Hidden
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class GlobalExceptionHandler {
 
      @ExceptionHandler(MethodArgumentNotValidException.class)
