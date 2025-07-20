@@ -2,6 +2,9 @@ package com.becxagy.book.api.core.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface Repository <E, I>{
     public void add(E obj);
 
@@ -11,5 +14,5 @@ public interface Repository <E, I>{
 
     public boolean exists(E obj);
 
-    public List<E> all();
+    public Page<E> all(Pageable pageable);
 }

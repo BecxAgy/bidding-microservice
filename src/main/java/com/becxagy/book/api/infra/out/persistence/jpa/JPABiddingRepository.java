@@ -3,6 +3,8 @@ package com.becxagy.book.api.infra.out.persistence.jpa;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.becxagy.book.api.core.domain.bidding.Bidding;
@@ -44,8 +46,8 @@ public class JPABiddingRepository implements BiddingRepository {
     }
 
     @Override
-    public List<Bidding> all() {
-        return springDataBiddingRepository.findAll();
+    public Page<Bidding> all(Pageable pageable) {
+            return springDataBiddingRepository.findAll(pageable);
     }
 
     @Override
@@ -61,12 +63,4 @@ public class JPABiddingRepository implements BiddingRepository {
     }
 
 
-
-    @Override
-    public void updateChecklist(Long id, List<DocumentRequirement> checklist) {
-        Bidding bidding = get(id);
-        bidding.setChecklist(checklist);
-        springDataBiddingRepository.save(bidding);
-    }
-    
 }

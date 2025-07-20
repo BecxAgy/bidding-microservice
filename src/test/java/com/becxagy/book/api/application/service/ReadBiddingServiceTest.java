@@ -12,7 +12,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
+import com.becxagy.book.api.application.representation.BiddingRepresentation;
 import com.becxagy.book.api.core.domain.bidding.Bidding;
 import com.becxagy.book.api.core.repository.BiddingRepository;
 
@@ -26,6 +31,7 @@ class ReadBiddingServiceTest {
     private ReadBiddingService readBiddingService;
 
     private Bidding testBidding;
+    private Bidding secondBidding;
 
     @BeforeEach
     void setUp() {
@@ -34,6 +40,14 @@ class ReadBiddingServiceTest {
         testBidding.setName("Test Bidding");
         testBidding.setDescription("Test Description");
         testBidding.setFileUrl("https://s3.amazonaws.com/bucket/test.pdf");
+        testBidding.setChecklist(null);
+
+        secondBidding = new Bidding();
+        secondBidding.setId(2L);
+        secondBidding.setName("Second Bidding");
+        secondBidding.setDescription("Second Description");
+        secondBidding.setFileUrl("https://s3.amazonaws.com/bucket/second.pdf");
+        secondBidding.setChecklist(null);
     }
 
     @Test
@@ -43,32 +57,47 @@ class ReadBiddingServiceTest {
         when(biddingRepository.get(biddingId)).thenReturn(testBidding);
 
         // When
-        Bidding result = readBiddingService.get(biddingId);
+        BiddingRepresentation result = readBiddingService.get(biddingId);
 
         // Then
-        assertEquals(testBidding, result);
+        assertNotNull(result);
         assertEquals(1L, result.getId());
         assertEquals("Test Bidding", result.getName());
+        assertEquals("Test Description", result.getDescription());
+        assertEquals("https://s3.amazonaws.com/bucket/test.pdf", result.getFileUrl());
         verify(biddingRepository).get(biddingId);
     }
 
     @Test
-    void shouldGetAllBiddings() {
+    void shouldGetAllBiddingsWithPagination() {
         // Given
-        Bidding secondBidding = new Bidding();
-        secondBidding.setId(2L);
-        secondBidding.setName("Second Bidding");
+        Pageable pageable = PageRequest.of(0, 10);
+        List<Bidding> biddingList = Arrays.asList(testBidding, secondBidding);
+        Page<Bidding> biddingPage = new PageImpl<>(biddingList, pageable, 2);
         
-        List<Bidding> expectedBiddings = Arrays.asList(testBidding, secondBidding);
-        when(biddingRepository.all()).thenReturn(expectedBiddings);
+        when(biddingRepository.all(pageable)).thenReturn(biddingPage);
 
         // When
-        List<Bidding> result = readBiddingService.getAll();
+        Page<BiddingRepresentation> result = readBiddingService.getAll(pageable);
 
         // Then
-        assertEquals(2, result.size());
-        assertEquals(expectedBiddings, result);
-        verify(biddingRepository).all();
+        assertNotNull(result);
+        assertEquals(2, result.getContent().size());
+        assertEquals(2, result.getTotalElements());
+        assertEquals(0, result.getNumber());
+        assertEquals(10, result.getSize());
+        
+        // Verify first bidding representation
+        BiddingRepresentation firstResult = result.getContent().get(0);
+        assertEquals(1L, firstResult.getId());
+        assertEquals("Test Bidding", firstResult.getName());
+        
+        // Verify second bidding representation
+        BiddingRepresentation secondResult = result.getContent().get(1);
+        assertEquals(2L, secondResult.getId());
+        assertEquals("Second Bidding", secondResult.getName());
+        
+        verify(biddingRepository).all(pageable);
     }
 
     @Test
@@ -78,10 +107,55 @@ class ReadBiddingServiceTest {
         when(biddingRepository.get(nonExistentId)).thenReturn(null);
 
         // When
-        Bidding result = readBiddingService.get(nonExistentId);
+        BiddingRepresentation result = readBiddingService.get(nonExistentId);
 
         // Then
         assertNull(result);
         verify(biddingRepository).get(nonExistentId);
+    }
+
+    @Test
+    void shouldReturnEmptyPageWhenNoBiddingsFound() {
+        // Given
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Bidding> emptyPage = new PageImpl<>(Arrays.asList(), pageable, 0);
+        when(biddingRepository.all(pageable)).thenReturn(emptyPage);
+
+        // When
+        Page<BiddingRepresentation> result = readBiddingService.getAll(pageable);
+
+        // Then
+        assertNotNull(result);
+        assertTrue(result.getContent().isEmpty());
+        assertEquals(0, result.getTotalElements());
+        assertEquals(0, result.getNumber());
+        verify(biddingRepository).all(pageable);
+    }
+
+    @Test
+    void shouldHandlePaginationCorrectly() {
+        // Given
+        Pageable pageable = PageRequest.of(1, 1); // Second page, 1 item per page
+        List<Bidding> biddingList = Arrays.asList(secondBidding);
+        Page<Bidding> biddingPage = new PageImpl<>(biddingList, pageable, 2);
+        
+        when(biddingRepository.all(pageable)).thenReturn(biddingPage);
+
+        // When
+        Page<BiddingRepresentation> result = readBiddingService.getAll(pageable);
+
+        // Then
+        assertNotNull(result);
+        assertEquals(1, result.getContent().size());
+        assertEquals(2, result.getTotalElements()); // Total elements across all pages
+        assertEquals(1, result.getNumber()); // Current page number
+        assertEquals(1, result.getSize()); // Page size
+        assertEquals(2, result.getTotalPages()); // Total pages
+        
+        BiddingRepresentation resultBidding = result.getContent().get(0);
+        assertEquals(2L, resultBidding.getId());
+        assertEquals("Second Bidding", resultBidding.getName());
+        
+        verify(biddingRepository).all(pageable);
     }
 }
