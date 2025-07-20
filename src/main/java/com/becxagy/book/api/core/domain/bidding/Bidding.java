@@ -37,4 +37,10 @@ public class Bidding {
     //define relationship with DocumentRequirement
     @OneToMany(mappedBy = "bidding", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentRequirement> checklist;
+
+
+    public void updateChecklist(List<DocumentRequirement> checklistItems) {
+        this.checklist.clear();
+        this.checklist.addAll(checklistItems);
+    }
 }

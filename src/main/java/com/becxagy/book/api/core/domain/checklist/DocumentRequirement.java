@@ -39,4 +39,11 @@ public class DocumentRequirement {
     @ManyToOne
     @JoinColumn(name = "bidding_id")
     private Bidding bidding;
+
+    public DocumentRequirement(String name, ExigenceEnum exigenceStatus, String additionalInfo, Boolean possibleToAttach) {
+        this.name = name;
+        this.exigenceStatus = exigenceStatus;
+        this.additionalInfo = additionalInfo;
+        this.possibleToAttach = possibleToAttach;
+    }
 }

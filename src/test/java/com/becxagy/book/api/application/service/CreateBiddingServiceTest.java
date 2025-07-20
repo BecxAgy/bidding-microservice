@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
 
 import com.becxagy.book.api.adapters.out.queue.QueuePort;
-import com.becxagy.book.api.core.command.CreateBiddingCommand;
+import com.becxagy.book.api.application.command.CreateBiddingCommand;
 import com.becxagy.book.api.core.repository.BiddingRepository;
 import com.becxagy.book.api.core.usecase.UploadBiddingUsecase;
 
