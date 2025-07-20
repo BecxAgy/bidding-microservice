@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
 import com.becxagy.book.api.shared.exception.InvalidEnumClassException;
+import com.becxagy.book.api.shared.exception.ObjetoNaoEncontradoException;
 import com.becxagy.book.api.shared.exception.S3StorageException;
 
 import io.swagger.v3.oas.annotations.Hidden;
@@ -25,6 +26,12 @@ import jakarta.validation.ConstraintViolationException;
 @Hidden
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class GlobalExceptionHandler {
+
+     @ExceptionHandler(ObjetoNaoEncontradoException.class)
+    public ResponseEntity<StandardError> objectNotFound(ObjetoNaoEncontradoException e, HttpServletRequest request) {
+        StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+    }
 
      @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationError> handleValidationExceptions(

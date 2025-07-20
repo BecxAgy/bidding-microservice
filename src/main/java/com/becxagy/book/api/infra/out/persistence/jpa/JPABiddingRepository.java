@@ -8,9 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.becxagy.book.api.core.domain.bidding.Bidding;
-import com.becxagy.book.api.core.domain.checklist.DocumentRequirement;
+
 import com.becxagy.book.api.core.repository.BiddingRepository;
 import com.becxagy.book.api.infra.out.persistence.jpa.springdata.SpringDataJPABiddingRepository;
+import com.becxagy.book.api.shared.exception.ObjetoNaoEncontradoException;
 
 @Repository
 public class JPABiddingRepository implements BiddingRepository {
@@ -36,7 +37,7 @@ public class JPABiddingRepository implements BiddingRepository {
     @Override
     public Bidding get(Long id) {
         return springDataBiddingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Bidding with id " + id + " not found"));
+                .orElseThrow(ObjetoNaoEncontradoException::new);
        
     }
 
