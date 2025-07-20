@@ -2,10 +2,10 @@ package com.becxagy.book.api.core.usecase;
 
 import java.util.List;
 
-import com.becxagy.book.api.core.domain.bidding.Bidding;
+import com.becxagy.book.api.application.representation.BiddingRepresentation;
 
 public interface ReadBiddingUsecase {
 
-    Bidding get(Long biddingId);
-    List<Bidding> getAll();
+    BiddingRepresentation get(Long biddingId);
+    List<BiddingRepresentation> getAll();
 }

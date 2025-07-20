@@ -1,4 +1,4 @@
-package com.becxagy.book.api.core.command;
+package com.becxagy.book.api.application.command;
 
 public record PublishBiddingCommand(String fileName, Long biddingId) {
     // This record is used to encapsulate the command for publishing a bidding

@@ -5,25 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.becxagy.book.api.core.domain.bidding.Bidding;
+import com.becxagy.book.api.application.mapper.BiddingMapper;
+import com.becxagy.book.api.application.representation.BiddingRepresentation;
 import com.becxagy.book.api.core.repository.BiddingRepository;
 import com.becxagy.book.api.core.usecase.ReadBiddingUsecase;
 @Service
 public class ReadBiddingService implements ReadBiddingUsecase{
     private final BiddingRepository biddingRepository;
+
     @Autowired
     public ReadBiddingService(BiddingRepository biddingRepository) {
         this.biddingRepository = biddingRepository;
     }
 
     @Override
-    public Bidding get(Long biddingId) {
-       return biddingRepository.get(biddingId);
+    public BiddingRepresentation get(Long biddingId) {
+      return BiddingMapper.toRepresentation(biddingRepository.get(biddingId));
     }
 
     @Override
-    public List<Bidding> getAll() {
-        return biddingRepository.all();
+    public List<BiddingRepresentation> getAll() {
+        return biddingRepository.all().stream()
+            .map(BiddingMapper::toRepresentation)
+            .toList();
     }
     
     

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.becxagy.book.api.adapters.out.queue.QueuePort;
-import com.becxagy.book.api.core.command.CreateBiddingCommand;
+import com.becxagy.book.api.application.command.CreateBiddingCommand;
 import com.becxagy.book.api.core.repository.BiddingRepository;
 import com.becxagy.book.api.core.usecase.CreateBiddingUsecase;
 import com.becxagy.book.api.core.usecase.UploadBiddingUsecase;

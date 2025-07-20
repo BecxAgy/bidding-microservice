@@ -1,4 +1,4 @@
-package com.becxagy.book.api.core.command;
+package com.becxagy.book.api.application.command;
 
 import org.springframework.web.multipart.MultipartFile;
 
