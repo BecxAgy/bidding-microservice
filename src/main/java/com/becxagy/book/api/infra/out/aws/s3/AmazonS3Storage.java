@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.AmazonS3;
 
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.becxagy.book.api.adapters.out.storage.StoragePort;
+import com.becxagy.book.api.shared.exception.S3StorageException;
 import com.becxagy.book.api.shared.utils.file.FileUtil;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -39,7 +40,13 @@ public class AmazonS3Storage implements StoragePort {
                 file.delete();
                 return fileUrl;
             } catch (final AmazonServiceException ex) {
-                throw new RuntimeException("Error while uploading file to S3: " + ex.getMessage());
+                throw new S3StorageException(
+                "Error uploading file to S3",
+                "upload",
+                bucketName,
+                multipartFile.getOriginalFilename(),
+                ex
+            );
             }
         });
     }
@@ -57,7 +64,13 @@ public class AmazonS3Storage implements StoragePort {
             return s3Client.getUrl(bucketName, uniqueFileName).toString();
         } catch (AmazonServiceException ex) {
 
-            throw new RuntimeException("Failed to upload file to S3: " + ex.getMessage());
+            throw new S3StorageException(
+                "Error uploading file to S3",
+                "upload",
+                bucketName,
+                file.getName(),
+                ex
+            );
         }
     }
 
