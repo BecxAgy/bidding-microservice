@@ -1,4 +1,4 @@
-package com.becxagy.book.api.application.command;
+package com.becxagy.book.api.application.command.bidding;
 
 import org.springframework.web.multipart.MultipartFile;
 

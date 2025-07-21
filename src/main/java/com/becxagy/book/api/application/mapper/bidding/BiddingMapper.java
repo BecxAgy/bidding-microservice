@@ -1,9 +1,10 @@
-package com.becxagy.book.api.application.mapper;
+package com.becxagy.book.api.application.mapper.bidding;
 
 import java.util.List;
 
-import com.becxagy.book.api.application.representation.BiddingRepresentation;
-import com.becxagy.book.api.application.representation.ChecklistItemRepresentation;
+import com.becxagy.book.api.application.mapper.checklist.DocumentRequirementMapper;
+import com.becxagy.book.api.application.representation.bidding.BiddingRepresentation;
+import com.becxagy.book.api.application.representation.checklist.ChecklistItemRepresentation;
 import com.becxagy.book.api.core.domain.bidding.Bidding;
 
 public class BiddingMapper {

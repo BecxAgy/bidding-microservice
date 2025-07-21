@@ -1,4 +1,4 @@
-package com.becxagy.book.api.application.representation;
+package com.becxagy.book.api.application.representation.checklist;
 
 import com.becxagy.book.api.core.domain.checklist.ExigenceEnum;
 import com.becxagy.book.api.infra.out.persistence.jpa.converter.ExigenceEnumConverter;

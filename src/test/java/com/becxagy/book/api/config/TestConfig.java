@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.becxagy.book.api.adapters.out.queue.QueuePort;
 import com.becxagy.book.api.adapters.out.storage.StoragePort;
-import com.becxagy.book.api.core.repository.BiddingRepository;
+import com.becxagy.book.api.core.repository.bidding.BiddingRepository;
 
 import static org.mockito.Mockito.mock;
 

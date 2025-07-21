@@ -3,10 +3,10 @@ package com.becxagy.book.api.application.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.becxagy.book.api.application.mapper.BiddingMapper;
-import com.becxagy.book.api.application.representation.BiddingRepresentation;
-import com.becxagy.book.api.core.repository.BiddingRepository;
-import com.becxagy.book.api.core.usecase.ReadBiddingUsecase;
+import com.becxagy.book.api.application.mapper.bidding.BiddingMapper;
+import com.becxagy.book.api.application.representation.bidding.BiddingRepresentation;
+import com.becxagy.book.api.core.repository.bidding.BiddingRepository;
+import com.becxagy.book.api.core.usecase.bidding.ReadBiddingUsecase;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

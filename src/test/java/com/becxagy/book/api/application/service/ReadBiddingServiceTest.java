@@ -17,9 +17,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import com.becxagy.book.api.application.representation.BiddingRepresentation;
+import com.becxagy.book.api.application.representation.bidding.BiddingRepresentation;
 import com.becxagy.book.api.core.domain.bidding.Bidding;
-import com.becxagy.book.api.core.repository.BiddingRepository;
+import com.becxagy.book.api.core.repository.bidding.BiddingRepository;
 
 @ExtendWith(MockitoExtension.class)
 class ReadBiddingServiceTest {

@@ -13,12 +13,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.becxagy.book.api.application.command.CreateBiddingCommand;
-import com.becxagy.book.api.application.command.UpdateChecklistCommand;
-import com.becxagy.book.api.application.representation.BiddingRepresentation;
-import com.becxagy.book.api.core.usecase.CreateBiddingUsecase;
-import com.becxagy.book.api.core.usecase.ReadBiddingUsecase;
-import com.becxagy.book.api.core.usecase.UpdateBiddingUsecase;
+import com.becxagy.book.api.application.command.bidding.CreateBiddingCommand;
+import com.becxagy.book.api.application.command.bidding.UpdateChecklistCommand;
+import com.becxagy.book.api.application.representation.bidding.BiddingRepresentation;
+import com.becxagy.book.api.core.usecase.bidding.CreateBiddingUsecase;
+import com.becxagy.book.api.core.usecase.bidding.ReadBiddingUsecase;
+import com.becxagy.book.api.core.usecase.bidding.UpdateBiddingUsecase;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

@@ -1,6 +1,6 @@
-package com.becxagy.book.api.application.mapper;
+package com.becxagy.book.api.application.mapper.checklist;
 
-import com.becxagy.book.api.application.representation.ChecklistItemRepresentation;
+import com.becxagy.book.api.application.representation.checklist.ChecklistItemRepresentation;
 import com.becxagy.book.api.core.domain.checklist.DocumentRequirement;
 
 public class DocumentRequirementMapper {

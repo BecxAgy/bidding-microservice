@@ -1,8 +1,8 @@
-package com.becxagy.book.api.application.command;
+package com.becxagy.book.api.application.command.bidding;
 
 import java.util.List;
 
-import com.becxagy.book.api.application.representation.ChecklistItemRepresentation;
+import com.becxagy.book.api.application.representation.checklist.ChecklistItemRepresentation;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

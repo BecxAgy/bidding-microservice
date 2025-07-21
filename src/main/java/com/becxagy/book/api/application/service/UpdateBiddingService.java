@@ -8,13 +8,13 @@ import javax.swing.text.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.becxagy.book.api.application.command.UpdateChecklistCommand;
-import com.becxagy.book.api.application.mapper.DocumentRequirementMapper;
-import com.becxagy.book.api.application.representation.ChecklistItemRepresentation;
+import com.becxagy.book.api.application.command.bidding.UpdateChecklistCommand;
+import com.becxagy.book.api.application.mapper.checklist.DocumentRequirementMapper;
+import com.becxagy.book.api.application.representation.checklist.ChecklistItemRepresentation;
 import com.becxagy.book.api.core.domain.bidding.Bidding;
 import com.becxagy.book.api.core.domain.checklist.DocumentRequirement;
-import com.becxagy.book.api.core.repository.BiddingRepository;
-import com.becxagy.book.api.core.usecase.UpdateBiddingUsecase;
+import com.becxagy.book.api.core.repository.bidding.BiddingRepository;
+import com.becxagy.book.api.core.usecase.bidding.UpdateBiddingUsecase;
 
 @Service
 public class UpdateBiddingService implements UpdateBiddingUsecase {

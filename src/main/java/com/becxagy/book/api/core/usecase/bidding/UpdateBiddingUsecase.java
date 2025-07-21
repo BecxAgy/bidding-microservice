@@ -1,6 +1,6 @@
-package com.becxagy.book.api.core.usecase;
+package com.becxagy.book.api.core.usecase.bidding;
 
-import com.becxagy.book.api.application.command.UpdateChecklistCommand;
+import com.becxagy.book.api.application.command.bidding.UpdateChecklistCommand;
 
 public interface UpdateBiddingUsecase {
     /**

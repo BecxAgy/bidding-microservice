@@ -8,8 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.becxagy.book.api.core.domain.bidding.Bidding;
-
-import com.becxagy.book.api.core.repository.BiddingRepository;
+import com.becxagy.book.api.core.repository.bidding.BiddingRepository;
 import com.becxagy.book.api.infra.out.persistence.jpa.springdata.SpringDataJPABiddingRepository;
 import com.becxagy.book.api.shared.exception.ObjetoNaoEncontradoException;
 
