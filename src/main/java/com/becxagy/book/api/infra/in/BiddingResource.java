@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -50,7 +50,7 @@ public class BiddingResource {
     @Operation(
         summary = "Criar nova licitação",
         description = "Cria uma nova licitação enviando um arquivo PDF e metadados",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = "Dados da licitação (form-data)",
             required = true,
             content = @Content(
@@ -84,7 +84,7 @@ public class BiddingResource {
     @Operation(
         summary = "Atualizar checklist da licitação",
         description = "Atualiza o checklist de uma licitação existente com novos itens de documentação",
-        requestBody = @RequestBody(
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = "Lista de itens do checklist",
             required = true,
             content = @Content(
