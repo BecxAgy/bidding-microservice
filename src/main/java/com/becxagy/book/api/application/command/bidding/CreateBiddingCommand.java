@@ -7,6 +7,7 @@ import com.becxagy.book.api.shared.utils.validation.ValidFile;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 @Schema(description = "Comando para criação de uma nova licitação")
 public record CreateBiddingCommand (
@@ -21,5 +22,12 @@ public record CreateBiddingCommand (
     
     @Schema(description = "Descrição detalhada da licitação", example = "Licitação pública para construção de escola municipal com 10 salas de aula")
     @NotBlank 
-    String description
+    String description,
+
+    @Pattern(regexp = "^(gemma|deepseek|dolphin)$", 
+             message = "Model deve ser um dos seguintes: gemma, deepseek, dolphin")
+    @Schema(description = "Modelo LLM para processar licitação", 
+            example = "gemma", 
+            allowableValues = {"gemma", "deepseek", "dolphin"})
+    String model
 ){}

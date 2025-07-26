@@ -29,6 +29,6 @@ public class CreateBiddingService implements CreateBiddingUsecase {
         
         Long biddingId = biddingRepository.save(command.name(), command.description(), fileUrl);
 
-        queuePort.publish(biddingId, fileUrl);
+        queuePort.publish(biddingId, fileUrl,  command.model());
     }
 }

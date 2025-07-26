@@ -22,11 +22,12 @@ public class AmazonSQSQueue implements QueuePort {
 
     @Override
     @Async
-    public void publish(Long biddingId, String fileUrl) {
+    public void publish(Long biddingId, String fileUrl, String model) {
         String messageBody = String.format("""
             {
               "id": "%s",
-              "filename": "%s"
+              "filename": "%s",
+              "model": "%s"
             }
             """, biddingId, fileUrl);
 
